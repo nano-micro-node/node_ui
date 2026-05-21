@@ -1,0 +1,19 @@
+{
+  "name": "@node_ui/node",
+  "version": "0.0.1",
+  "description": "Node UI library",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean && mkdirp dist docs/static",
+    "build:css": "concat-cli -f src/css/00-base.css src/css/01-theme.css src/css/animations.css src/css/avatar.css src/css/button.css src/css/form.css src/css/table.css src/css/progress.css src/css/spinner.css src/css/grid.css src/css/card.css src/css/alert.css src/css/badge.css src/css/accordion.css src/css/tabs.css src/css/dialog.css src/css/dropdown.css src/css/toast.css src/css/sidebar.css src/css/skeleton.css src/css/tooltip.css src/css/utilities.css -o dist/node.css && esbuild dist/node.css --minify --outfile=dist/node.min.css && copyfiles -f dist/node.min.css docs/static",
+    "build:js": "esbuild src/js/index.js --bundle --format=iife --outfile=dist/node.js && esbuild src/js/index.js --bundle --format=iife --minify --outfile=dist/node.min.js && copyfiles -f dist/node.min.js docs/static",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "concat-cli": "^4.0.0",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.28.0",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.1.3"
+  }
+}
